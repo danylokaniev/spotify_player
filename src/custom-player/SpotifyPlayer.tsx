@@ -1,10 +1,13 @@
 import { Container, Grid, Paper, styled } from '@mui/material';
+import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import TrackImage from 'src/components/TrackImage';
+import CurrentTrack from 'src/components/CurrentTrack';
+import PlayerActions from 'src/components/PlayerActions';
+import RandomTrack from 'src/components/RandomTrack';
 import TrackList from 'src/components/TrackList';
 import { fetchSavedTracks } from 'src/redux/appSlice';
-import { setupPlayer, toggleTrack } from 'src/redux/player';
+import { setupPlayer } from 'src/redux/player';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -13,6 +16,14 @@ const Item = styled(Paper)(({ theme }) => ({
   flex: 1,
   color: theme.palette.text.secondary,
 }));
+
+const itemStyles = {
+  height: 0.85,
+  display: 'flex',
+  flexFlow: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
 
 export default function SpotifyPlayer({ token }) {
   const dispatch = useDispatch();
@@ -31,21 +42,23 @@ export default function SpotifyPlayer({ token }) {
 
   return (
     <>
-      <Container sx={{ flexGrow: 1, height: 1, paddingTop: '24px' }}>
-        <Grid container spacing={2} sx={{ height: 1 }}>
-          <Grid item xs={8} sx={{ height: 0.85, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <TrackImage />
-          </Grid>
-          <Grid item xs={4} sx={{ height: 0.85, display: 'flex' }}>
+      <Container sx={{ flexGrow: 1, height: 1, paddingTop: '24px', display: 'flex', padding: '20px' }}>
+        <Box sx={{ width: 0.6, padding: '20px' }}>
+          <Box sx={{ height: 0.85 }}>
+            <CurrentTrack />
+          </Box>
+          <Box sx={{ height: 0.15 }}>
+            <PlayerActions />
+          </Box>
+        </Box>
+        <Box sx={{ width: 0.4 }}>
+          <Box sx={{ height: 0.1 }}>
+            <RandomTrack />
+          </Box>
+          <Box sx={{ height: 0.9 }}>
             <TrackList />
-          </Grid>
-          <Grid item xs={8} sx={{ height: 0.15, display: 'flex' }}>
-            <Item>xs=8</Item>
-          </Grid>
-          <Grid item xs={4} sx={{ height: 0.15, display: 'flex' }}>
-            <Item>xs=8</Item>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Container>
     </>
   );

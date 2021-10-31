@@ -6,8 +6,8 @@ export interface AppState {
   deviceId: string;
   currentTrack: SavedTrackObject;
   tracks: SavedTrackObject[];
-  randomTrack: any;
   isLoading: boolean;
+  isPlaying: boolean;
   error: '';
   tracksPagination: TracksPagination;
 }

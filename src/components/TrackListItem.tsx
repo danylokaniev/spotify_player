@@ -1,7 +1,7 @@
 import { ListItemAvatar, Avatar, ListItemText, ListItemButton } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setTrackById } from 'src/redux/appSlice';
+import { setCurrentTrackById } from 'src/redux/player';
 import { TrackObject } from 'src/types/spotify';
 
 interface TrackListItemProps {
@@ -11,7 +11,7 @@ interface TrackListItemProps {
 
 export default function TrackListItem({ track, selected }: TrackListItemProps) {
   const dispatch = useDispatch();
-  const onTrackClick = id => dispatch(setTrackById(id));
+  const onTrackClick = id => dispatch(setCurrentTrackById(id));
 
   return (
     <ListItemButton selected={selected} onClick={() => onTrackClick(track.id)} key={track.id} sx={{ flexGrow: 0 }}>

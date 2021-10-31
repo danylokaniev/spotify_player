@@ -1,4 +1,4 @@
-import { PagingObject, SavedTrackObject } from './spotify';
+import { PagingObject, SavedTrackObject, TrackObject } from './spotify';
 
 export interface SpotifyDevice {
   id: string;
@@ -34,7 +34,8 @@ export interface SpotifyPlayOptions {
   uris: string[];
 }
 
-export type UsersSavedTracksResponse = PagingObject<SavedTrackObject>;
+export type TracksResponse = PagingObject<SavedTrackObject>;
+export type RandomTrackResponse = { tracks: PagingObject<TrackObject> };
 
 export interface ErrorResponse {
   error: {

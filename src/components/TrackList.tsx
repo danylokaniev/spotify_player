@@ -7,8 +7,9 @@ import SavedTracksPagination from './TracksPagination';
 
 export default function TrackList() {
   const { tracks, currentTrack } = useSelector((state: RootState) => state.app);
+  console.log(tracks, currentTrack);
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: 1 }}>
       {tracks.map(({ track }) => (
         <TrackListItem track={track} selected={track.id === currentTrack.track.id} key={track.id} />
       ))}

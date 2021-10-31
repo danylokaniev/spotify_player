@@ -1,26 +1,25 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getSavedTracks } from 'src/api/api';
 import { LocalStorageKeys } from 'src/common/local-storage-keys';
-import { UsersSavedTracksResponse, ErrorResponse } from 'src/types/api';
-import { SavedTrackObject, TrackObject } from 'src/types/spotify';
+import { TracksResponse, ErrorResponse } from 'src/types/api';
 import { RootState, AppState } from 'src/types/store';
 
 const initialState: AppState = {
   isLoading: false,
+  isPlaying: false,
   error: '',
-  token: localStorage.getItem(LocalStorageKeys.TOKEN),
   deviceId: '',
   currentTrack: null,
   tracks: [],
-  randomTrack: null,
   tracksPagination: {
     total: 0,
     currentPage: 1,
     limit: 10,
   },
+  token: localStorage.getItem(LocalStorageKeys.TOKEN),
 };
 
-export const fetchSavedTracks = createAsyncThunk<UsersSavedTracksResponse | ErrorResponse, void, { state: RootState }>(
+export const fetchSavedTracks = createAsyncThunk<TracksResponse | ErrorResponse, void, { state: RootState }>(
   'app/fetchTracks',
   async (_, { getState, rejectWithValue }) => {
     const { app } = getState();
@@ -33,14 +32,6 @@ export const fetchSavedTracks = createAsyncThunk<UsersSavedTracksResponse | Erro
     } catch (e) {
       return rejectWithValue(e);
     }
-  }
-);
-
-export const setTrackById = createAsyncThunk<SavedTrackObject, string, { state: RootState }>(
-  'app/setTrack',
-  async (trackId, { getState }) => {
-    const { app } = getState();
-    return app.tracks.find(savedTrack => savedTrack.track.id === trackId);
   }
 );
 
@@ -58,6 +49,18 @@ export const appSlice = createSlice({
     setCurrentPage: (state, { payload }) => {
       state.tracksPagination.currentPage = payload;
     },
+    setPaused: state => {
+      state.isPlaying = false;
+    },
+    setPlayed: state => {
+      state.isPlaying = true;
+    },
+    togglePlaying: state => {
+      state.isPlaying = !state.isPlaying;
+    },
+    setCurrentTrack: (state, { payload }) => {
+      state.currentTrack = payload;
+    },
   },
   extraReducers: {
     [fetchSavedTracks.pending.type]: state => {
@@ -68,21 +71,19 @@ export const appSlice = createSlice({
       const { total, items, limit } = payload;
       state.isLoading = false;
       state.tracks = items;
-      state.currentTrack = items[0];
       state.tracksPagination.total = total;
       state.tracksPagination.limit = limit;
+      if (!state.currentTrack) state.currentTrack = items[0];
     },
     [fetchSavedTracks.rejected.type]: state => {
       state.isLoading = false;
       state.token = '';
       localStorage.removeItem(LocalStorageKeys.TOKEN);
     },
-    [setTrackById.fulfilled.type]: (state, { payload }) => {
-      state.currentTrack = payload;
-    },
   },
 });
 
-export const { setToken, setDeviceId, setCurrentPage } = appSlice.actions;
+export const { setToken, setDeviceId, setCurrentPage, setPaused, setPlayed, togglePlaying, setCurrentTrack } =
+  appSlice.actions;
 
 export default appSlice.reducer;
