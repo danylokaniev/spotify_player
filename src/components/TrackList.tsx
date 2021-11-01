@@ -11,7 +11,7 @@ const TrackList: FunctionComponent<Record<string, never>> = () => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: 1 }}>
-      <Typography sx={{padding: '12px'}}>Saved tracks: </Typography>
+      <Typography sx={{ padding: '12px' }}>Saved tracks: </Typography>
       {tracks.map(({ track }) => (
         <TrackListItem track={track} selected={track.id === currentTrack.track.id} key={track.id} />
       ))}

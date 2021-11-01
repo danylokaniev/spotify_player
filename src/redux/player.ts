@@ -2,7 +2,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getRandomTrack, isSavedTrackById, play, removeTrackById, saveTrackById } from '../api/api';
 import { WebPlaybackState } from '../types/spotify';
 import { RootState } from '../types/store';
-import { setCurrentTrack, setDeviceId, setPaused, setPlayed, toggleCurrentStateSaved, togglePlaying } from './appSlice';
+import {
+  getSavedTracks,
+  setCurrentTrack,
+  setDeviceId,
+  setPaused,
+  setPlayed,
+  toggleCurrentStateSaved,
+  togglePlaying,
+} from './appSlice';
 import store from './store';
 
 let player;
@@ -99,5 +107,6 @@ export const toggleSaveStateForCurrentTrack = createAsyncThunk<void, void, { sta
     }
 
     dispatch(toggleCurrentStateSaved());
+    dispatch(getSavedTracks());
   }
 );
