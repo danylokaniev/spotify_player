@@ -89,3 +89,30 @@ interface TrackLinkObject {
   type: 'track';
   uri: string;
 }
+
+export interface WebPlaybackState {
+  bitrate: number;
+  context: {
+    metadata: Record<string, unknown>;
+    uri: null;
+  };
+  disallows: {
+    resuming: boolean;
+    skipping_prev: boolean;
+  };
+  duration: number;
+  paused: boolean;
+  position: number;
+  repeat_mode: number;
+  restrictions: {
+    disallow_resuming_reasons: [];
+    disallow_skipping_prev_reasons: [];
+  };
+  shuffle: boolean;
+  timestamp: number;
+  track_window: {
+    current_track: unknown;
+    next_tracks: [];
+    previous_tracks: [];
+  };
+}

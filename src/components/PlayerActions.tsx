@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { RootState } from 'src/types/store';
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useDispatch, useSelector } from 'react-redux';
-import { IconButton } from '@mui/material';
-import { togglePlay } from 'src/redux/player';
+import { Box, IconButton } from '@mui/material';
+import { togglePlay, toggleSaveStateForCurrentTrack } from 'src/redux/player';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-export default function PlayerActions() {
-  const { isPlaying } = useSelector((state: RootState) => state.app);
+const PlayerActions: FunctionComponent<Record<string, never>> = () => {
+  const { isPlaying, isCurrentTrackSaved } = useSelector((state: RootState) => state.app);
   const dispatch = useDispatch();
   const playClick = () => dispatch(togglePlay());
+  const savedClick = () => dispatch(toggleSaveStateForCurrentTrack());
 
   return (
-    <IconButton size="large" sx={{ height: 75, width: 75 }} onClick={playClick}>
-      {!isPlaying ? <PlayArrowIcon sx={{ fontSize: '2.5rem' }} /> : <PauseIcon sx={{ fontSize: '3.5rem' }} />}
-    </IconButton>
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <IconButton size="large" sx={{ height: 75, width: 75 }} onClick={playClick}>
+        {!isPlaying ? <PlayArrowIcon sx={{ fontSize: '2.5rem' }} /> : <PauseIcon sx={{ fontSize: '3.5rem' }} />}
+      </IconButton>
+      <IconButton onClick={savedClick}>{isCurrentTrackSaved ? <FavoriteIcon /> : <FavoriteBorderIcon />}</IconButton>
+    </Box>
   );
-}
+};
+
+export default PlayerActions;

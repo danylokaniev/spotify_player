@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { batch, useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/types/store';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { fetchSavedTracks, setCurrentPage } from 'src/redux/appSlice';
+import { getSavedTracks, setCurrentPage } from 'src/redux/appSlice';
 
-export default function SavedTracksPagination() {
+const SavedTracksPagination: FunctionComponent<Record<string, never>> = () => {
   const { currentPage, total, limit } = useSelector((state: RootState) => state.app.tracksPagination);
   const totalPages = Math.ceil(total / limit);
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export default function SavedTracksPagination() {
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     batch(() => {
       dispatch(setCurrentPage(value));
-      dispatch(fetchSavedTracks());
+      dispatch(getSavedTracks());
     });
   };
 
@@ -22,4 +22,6 @@ export default function SavedTracksPagination() {
       <Pagination count={totalPages} page={currentPage} onChange={handleChange} />
     </Stack>
   );
-}
+};
+
+export default SavedTracksPagination;

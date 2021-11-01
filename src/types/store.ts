@@ -6,9 +6,8 @@ export interface AppState {
   deviceId: string;
   currentTrack: SavedTrackObject;
   tracks: SavedTrackObject[];
-  isLoading: boolean;
   isPlaying: boolean;
-  error: '';
+  isCurrentTrackSaved: boolean;
   tracksPagination: TracksPagination;
 }
 
@@ -22,3 +21,25 @@ export interface RootState {
   app: AppState;
 }
 export type AppDispatch = typeof store.dispatch;
+
+export interface SetCurrentPagePayload {
+  payload: number;
+}
+
+export interface SetTokenPayload {
+  payload: string;
+}
+export interface SetCurrentTrackPayload {
+  payload: {
+    track: SavedTrackObject;
+    saved: boolean;
+  };
+}
+
+export interface GetSavedTracksFulfilledPayload {
+  payload: {
+    limit: number;
+    total: number;
+    items: SavedTrackObject[];
+  };
+}

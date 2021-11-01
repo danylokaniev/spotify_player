@@ -9,7 +9,9 @@ const getUriParams = (): Record<string, string> => {
       }
       return initial;
     }, {});
+
   window.location.hash = '';
+
   return params;
 };
 

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import authUrl from 'src/common/config';
 
-export default function Auth() {
+const Auth: FunctionComponent<Record<string, never>> = () => {
   return (
     <Box sx={{ width: 1, height: 1, alignItems: 'center', justifyContent: 'center', display: 'flex' }}>
       <Button variant="contained" color="success">
@@ -11,4 +11,6 @@ export default function Auth() {
       </Button>
     </Box>
   );
-}
+};
+
+export default Auth;
