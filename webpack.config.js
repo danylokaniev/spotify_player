@@ -1,5 +1,6 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: ['./src/index.tsx', './src/index.css'],
@@ -17,6 +18,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   plugins: [
+    new MiniCssExtractPlugin(),
     new Dotenv()
   ],
   module: {
@@ -58,7 +60,7 @@ module.exports = {
       {
         test: /\.css$/, // .css
         exclude: /\.m\.css$/, // for module styles
-        use: ['css-loader'],
+        use: [MiniCssExtractPlugin.loader,'css-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
