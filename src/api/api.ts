@@ -1,5 +1,5 @@
-import { getRandomOffset, getRandomQuery } from 'src/common/random-params-generator';
-import { RandomTrackResponse, SpotifyPlayOptions, TracksResponse } from 'src/types/api';
+import { getRandomOffset, getRandomQuery } from '../common/random-params-generator';
+import { RandomTrackResponse, SpotifyPlayOptions, TracksResponse } from '../types/api';
 
 export async function play(token: string, { deviceId, uris }: SpotifyPlayOptions): Promise<Response> {
   const body = JSON.stringify({ uris });

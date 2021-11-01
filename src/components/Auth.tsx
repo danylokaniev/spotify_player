@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import authUrl from 'src/common/config';
+import authUrl from '../common/config';
 
 const Auth: FunctionComponent<Record<string, never>> = () => {
   return (

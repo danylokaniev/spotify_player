@@ -2,13 +2,13 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { Container } from '@mui/material';
 import { Box } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
-import CurrentTrack from 'src/components/CurrentTrack';
-import PlayerActions from 'src/components/PlayerActions';
-import RandomTrack from 'src/components/RandomTrack';
-import TrackList from 'src/components/TrackList';
-import { getSavedTracks } from 'src/redux/appSlice';
-import { setupPlayer } from 'src/redux/player';
-import { RootState } from 'src/types/store';
+import CurrentTrack from '../components/CurrentTrack';
+import PlayerActions from '../components/PlayerActions';
+import RandomTrack from '../components/RandomTrack';
+import TrackList from '../components/TrackList';
+import { getSavedTracks } from '../redux/appSlice';
+import { setupPlayer } from '../redux/player';
+import { RootState } from '../types/store';
 
 const SpotifyPlayer: FunctionComponent<Record<string, never>> = () => {
   const { token } = useSelector((state: RootState) => state.app);

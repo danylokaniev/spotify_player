@@ -1,8 +1,8 @@
 import { ListItemAvatar, Avatar, ListItemText, ListItemButton } from '@mui/material';
 import React, { FunctionComponent } from 'react';
 import { useDispatch } from 'react-redux';
-import { setCurrentTrackById } from 'src/redux/player';
-import { TrackObject } from 'src/types/spotify';
+import { setCurrentTrackById } from '../redux/player';
+import { TrackObject } from '../types/spotify';
 
 interface TrackListItemProps {
   track: TrackObject;

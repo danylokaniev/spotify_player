@@ -1,4 +1,4 @@
-import store from 'src/redux/store';
+import store from '../redux/store';
 import { SavedTrackObject } from './spotify';
 
 export interface AppState {

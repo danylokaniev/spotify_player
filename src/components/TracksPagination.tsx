@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { batch, useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'src/types/store';
+import { RootState } from '../types/store';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { getSavedTracks, setCurrentPage } from 'src/redux/appSlice';
+import { getSavedTracks, setCurrentPage } from '../redux/appSlice';
 
 const SavedTracksPagination: FunctionComponent<Record<string, never>> = () => {
   const { currentPage, total, limit } = useSelector((state: RootState) => state.app.tracksPagination);

@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Box, IconButton } from '@mui/material';
 import CasinoIcon from '@mui/icons-material/Casino';
-import { setRandomTrack } from 'src/redux/player';
+import { setRandomTrack } from '../redux/player';
 
 const RandomTrack: FunctionComponent<Record<string, never>> = () => {
   const dispatch = useDispatch();

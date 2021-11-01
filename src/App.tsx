@@ -1,5 +1,5 @@
 import SpotifyPlayer from './components/SpotifyPlayer';
-import { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Container from '@mui/material/Container';
 import Auth from './components/Auth';

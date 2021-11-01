@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getUserSavedTracks } from 'src/api/api';
-import { LocalStorageKeys } from 'src/common/local-storage-keys';
-import { TracksResponse, ErrorResponse } from 'src/types/api';
+import { getUserSavedTracks } from '../api/api';
+import { LocalStorageKeys } from '../common/local-storage-keys';
+import { TracksResponse, ErrorResponse } from '../types/api';
 import {
   RootState,
   AppState,
@@ -9,7 +9,7 @@ import {
   SetCurrentTrackPayload,
   SetTokenPayload,
   GetSavedTracksFulfilledPayload,
-} from 'src/types/store';
+} from '../types/store';
 
 const initialState: AppState = {
   token: localStorage.getItem(LocalStorageKeys.TOKEN),

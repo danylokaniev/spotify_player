@@ -1,7 +1,7 @@
 import { Box } from '@mui/system';
 import React, { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'src/types/store';
+import { RootState } from '../types/store';
 import TrackListItem from './TrackListItem';
 import SavedTracksPagination from './TracksPagination';
 

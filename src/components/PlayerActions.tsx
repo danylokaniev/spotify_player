@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react';
-import { RootState } from 'src/types/store';
+import { RootState } from '../types/store';
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, IconButton } from '@mui/material';
-import { togglePlay, toggleSaveStateForCurrentTrack } from 'src/redux/player';
+import { togglePlay, toggleSaveStateForCurrentTrack } from '../redux/player';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 

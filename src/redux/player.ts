@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getRandomTrack, isSavedTrackById, play, removeTrackById, saveTrackById } from 'src/api/api';
-import { WebPlaybackState } from 'src/types/spotify';
-import { RootState } from 'src/types/store';
+import { getRandomTrack, isSavedTrackById, play, removeTrackById, saveTrackById } from '../api/api';
+import { WebPlaybackState } from '../types/spotify';
+import { RootState } from '../types/store';
 import { setCurrentTrack, setDeviceId, setPaused, setPlayed, toggleCurrentStateSaved, togglePlaying } from './appSlice';
 import store from './store';
 
